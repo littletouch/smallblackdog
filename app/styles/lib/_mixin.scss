@@ -1,0 +1,15 @@
+@mixin circular($radius: 200px) {
+	width: $radius*2;
+	height: $radius*2;
+	border-radius: $radius;
+}
+@mixin clearfix() {
+	&:before,
+	&:after {
+		content: "";
+		display: table;
+	}
+	&:after {
+	clear: both;
+	}
+}

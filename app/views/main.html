@@ -1,10 +1,10 @@
-<div class="row">
+<div class="row track">
   <div class="small-12 columns">
-    <div ng-show="initializing">
+    <div ng-show="initializing" class="track-init">
       loading...
     </div>
 
-    <h2> {{ track.title }} </h2>
+    <h2 class="track-title"> {{ track.title }} </h2>
     <img ng-src="{{ cover }}" class="track-cover">
     <video style="display:none" id="blackdog-player" src="" class="video-js vjs-default-skin" autoplay preload="auto" width="400" height="400" >
     </video>    
