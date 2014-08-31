@@ -13,7 +13,8 @@
     "angular-route": "1.2.16",
     "lodash": "~2.4.1",
     "videojs-youtube": "~1.2.5",
-    "sprintf": "~1.0.0"
+    "sprintf": "~1.0.0",
+    "foundation": "~5.4.3"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",

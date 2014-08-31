@@ -8,41 +8,44 @@
  * Controller of the smallblackdogApp
  */
 angular.module('smallblackdogApp')
-  .controller('MainCtrl', function ($scope, redditMusicService) {
+  .controller('MainCtrl', function ($scope, $timeout, redditMusicService) {
+    $scope.initializing = true;
+
     var playlist = [];
 
     var player = videojs('blackdog-player', {
       'controls': true,
       'autoplay': true,
       'techOrder': ['youtube']
-      // 'src': 'http://www.youtube.com/watch?v=xjS6SftYQaQ'
     }).ready(function(){
       var player = this;
 
       player.on('ended', function() {
         console.log('ended');
-        var track = playlist.shift();
-        player.src({
-          src: track.url,
-          type: 'video/youtube'
-        });
+        toNextTrack();
       });
     });
 
     redditMusicService.init();
 
-    var jumpToNewTrack = function() {
-      // return if already playing
-      if (player.src()) return;
-
+    var toNextTrack = function() {
       var track = playlist.shift();
-      console.log('jump', track);
-
-      //hardcoded
+      console.log('next', track);
       player.src({
         src: track.url,
         type: 'video/youtube'
       });
+
+      $scope.track = track;
+      $timeout(function() {
+        $scope.$apply();
+      });
+
+      redditMusicService.getCoverByTrackTitle(track.title).then(function(cover){
+        $scope.cover = cover;
+        console.log('cover in ctrl', data);
+      });
+
     };
 
     var playlistUpdateCallback = function() {
@@ -55,11 +58,12 @@ angular.module('smallblackdogApp')
       playlistUpdateCallback();
     });
 
-    $scope.$on('event:new-track-list', function(event, tracks) {
-      console.log('new track list in ctrl', tracks);
+    $scope.$on('event:init-track-list', function(event, tracks) {
+      console.log('init track list in ctrl', tracks);
       playlist = playlist.concat(tracks);
       playlistUpdateCallback();
-      jumpToNewTrack();
+      toNextTrack();
+      $scope.initializing = false;
     });
 
   });

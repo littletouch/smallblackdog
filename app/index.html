@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- video js start -->
     <link href="//vjs.zencdn.net/4.7/video-js.css" rel="stylesheet">
     <script src="//vjs.zencdn.net/4.7/video.js"></script>
@@ -13,6 +13,8 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/video.js/dist/video-js/video-js.css" />
+    <link rel="stylesheet" href="bower_components/foundation/css/foundation.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -60,6 +62,8 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/json3/lib/json3.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -72,6 +76,10 @@
     <script src="bower_components/video.js/dist/video-js/video.js"></script>
     <script src="bower_components/videojs-youtube/dist/vjs.youtube.js"></script>
     <script src="bower_components/sprintf/src/sprintf.js"></script>
+    <script src="bower_components/fastclick/lib/fastclick.js"></script>
+    <script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
+    <script src="bower_components/jquery-placeholder/jquery.placeholder.js"></script>
+    <script src="bower_components/foundation/js/foundation.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -81,5 +89,8 @@
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/services/redditmusicservice.js"></script>
         <!-- endbuild -->
+        <script>
+            $(document).foundation();
+        </script>
 </body>
 </html>

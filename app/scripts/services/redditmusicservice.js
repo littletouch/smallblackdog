@@ -24,7 +24,6 @@ angular.module('smallblackdogApp')
       'realdubstep',
       'hiphopheads',
       'chillmusic',
-      'gamemusic',
       'treemusic',
       'indie',
       'electronicmusic',
@@ -40,9 +39,7 @@ angular.module('smallblackdogApp')
       'rock',
       'country',
       'classicrock',
-      'alternativerock',
-      'posthardcore',
-      'metalcore'
+      'alternativerock'
     ];
 
     var pusher = new Pusher('50ed18dd967b455393ed');
@@ -52,6 +49,19 @@ angular.module('smallblackdogApp')
       return sprintf('http://www.reddit.com/r/%s/new.json?limit=100', subreddit);
     };
 
+    var isValidTrackPost = function(post) {
+      return _.contains(VALID_MUSIC_DOMAINS, post.domain);
+    }
+
+    var cleanTrackData = function(data) {
+      data.title = data.title.replace(/ *\([^)]*\) */g, "").replace(/ *\[[^)]*\] */g, "");
+      return data;
+    }
+
+    var extractTrackMetadata = function(post) {
+      var re = /([\w\s]+)\s-+\s([\w\s]+)/;
+    }
+
     var getTracklistFromSubredditNewPostList = function(subreddit) {
       var defer = $q.defer();
       console.log('fill playlist from subreddit ', subreddit);
@@ -59,12 +69,14 @@ angular.module('smallblackdogApp')
 
       $http({method: 'GET', url: url}).
           success(function(data, status, headers, config) {
+            if(!data.data) {
+              return;
+            }
             var posts = data.data.children;
             var newTracks = _.chain(posts)
               .map('data')
-              .filter(function(post) {
-                return _.contains(VALID_MUSIC_DOMAINS, post.domain);
-              })
+              .filter(isValidTrackPost)
+              .map(cleanTrackData)
               .value();
             defer.resolve(newTracks);
           }).
@@ -85,7 +97,7 @@ angular.module('smallblackdogApp')
 
       var newPostCallback = function(post) {
         console.log('new post from reddit', post);
-        if (_.contains(VALID_MUSIC_DOMAINS, post.domain)) {
+        if (isValidTrackPost(post)) {
           $rootScope.$broadcast('event:new-track', post);
         }
       };
@@ -95,7 +107,7 @@ angular.module('smallblackdogApp')
       });
     };
 
-    this.fillTracksFromOldPost = function() {
+    this.initTracksFromOldRedditPost = function() {
       // random select 3 subreddit
       var subreddits = _.sample(MUSIC_SUBREDDITS, 3);
 
@@ -104,17 +116,38 @@ angular.module('smallblackdogApp')
       });
 
       $q.all(requests).then(function(data){
-        console.log(data);
         var newTracks = _.flatten(data, true);
-        console.log(newTracks);
-        $rootScope.$broadcast('event:new-track-list', newTracks);
+        $rootScope.$broadcast('event:init-track-list', newTracks);
       });
 
     };
 
     this.init = function() {
-      this.fillTracksFromOldPost();
+      this.initTracksFromOldRedditPost();
       this.watchChannelsPost();
+    };
+
+    this.getCoverByTrackTitle = function(title) {
+      var defer = $q.defer();
+      var url = sprintf(
+        'https://api.spotify.com/v1/search?q=%s&type=track',
+        escape(title)
+      );
+
+      $http({method: 'GET', url: url}).
+          success(function(data, status, headers, config) {
+            console.log(data);
+            try {
+              var url = data.tracks.items[0].album.images[0].url;
+              defer.resolve(url);
+            } catch(e) {
+              console.log('no available cover');
+            }
+          }).
+          error(function(data, status, headers, config) {
+            console.log('oops, spotify search api calling failed');
+          });
+      return defer.promise;
     };
 
   });
