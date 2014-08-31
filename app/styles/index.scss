@@ -1,9 +1,22 @@
 // bower:scss
 // endbower
 
+$track_title_color: #888;
+$prog_color: #666;
+
 @import 'lib/mixin';
 @import 'lib/var';
 
+
+::selection {
+  background: black;
+  color: yellow; 
+}
+
+::-moz-selection {
+  background: black;
+  color: yellow; 
+}
 
 .track {
 	height: 100%;
@@ -11,18 +24,20 @@
 	padding: 40px 0 30px;
 }
 
-	.track-title {
-		font-family: 'Architects Daughter', cursive;
-		margin: 0 0 20px;
-		font-size: 1.5rem;
-	}
 
-	.track-cover {
-		@include circular($sm-radius);
-		@media screen and (min-width: 40em) {
-			@include circular($mid-radius);
-		}
+.track-title {
+  font-family: 'Istok Web', sans-serif;
+  font-size: 1.5em;
+  color: $track_title_color;
+	margin: 0 0 20px;
+}
+
+.track-cover {
+	@include circular($sm-radius);
+	@media screen and (min-width: 40em) {
+		@include circular($mid-radius);
 	}
+}
 
 /* Loading effect */
 .loader svg {
@@ -49,4 +64,13 @@
 #loader-outer { 
 	fill: #000; 
 	fill-opacity: 0.5;
+}
+
+#nprogress .bar {
+  height: 4px !important;
+  background: $prog_color !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px $prog_color, 0 0 5px $prog_color !important;
 }

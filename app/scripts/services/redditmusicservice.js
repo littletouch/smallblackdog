@@ -52,7 +52,10 @@ angular.module('smallblackdogApp')
     };
 
     var isValidTrackPost = function(post) {
-      return _.contains(VALID_MUSIC_DOMAINS, post.domain);
+      var inDomain = _.contains(VALID_MUSIC_DOMAINS, post.domain);
+      // title must contain a -
+      var hyphenInTitle = _.contains(post.title, '-');
+      return _.all([inDomain, hyphenInTitle]);
     }
 
     var cleanTrackData = function(data) {
@@ -69,7 +72,10 @@ angular.module('smallblackdogApp')
         data.youtubeId = qs.v;
       }
 
-      title = data.title.replace(/ *\([^)]*\) */g, "").replace(/ *\[[^)]*\] */g, "");
+      title = data.title
+        .replace(/\[.*?\]/g, '')
+        .replace(/\(.*?\)/g, '');
+
       title = _.unescape(title);
       data.title = title;
       return data;
