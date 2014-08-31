@@ -43,7 +43,7 @@ angular.module('smallblackdogApp')
 
       redditMusicService.getCoverByTrackTitle(track.title).then(function(cover){
         $scope.cover = cover;
-        console.log('cover in ctrl', data);
+        console.log('cover in ctrl', cover);
       });
 
     };

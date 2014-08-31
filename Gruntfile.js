@@ -324,6 +324,25 @@ module.exports = function (grunt) {
       }
     },
 
+    rsync: {
+      options: {
+        // these are my preferred arguments when using rsync
+        args: ['-avz', '--verbose', '--delete'],
+        // an array of files you'd like to exclude; usual suspects...
+        exclude: ['.git*', 'cache', 'logs', 'node_modules/'],
+        recursive: true
+      },
+      prod: {
+        options: {
+            // the dir you want to sync, in this case the current dir
+            src: './',
+            // where should it be synced to on the remote host?
+            dest: '/home/wwwroot/fm.littletouch.org/',
+            // what's the creds and host
+            host: 'root@www.xiuxiu.de'
+          }
+      }
+    },
     // Replace Google CDN references
     cdnify: {
       dist: {
@@ -437,4 +456,10 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  grunt.registerTask('deploy', [
+    'build',
+    'rsync'
+  ]);
+
 };
