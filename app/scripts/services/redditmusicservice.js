@@ -22,22 +22,24 @@ angular.module('smallblackdogApp')
       'dubstep',
       'electrohouse',
       'realdubstep',
-      'hiphopheads',
       'chillmusic',
-      'treemusic',
+      'experimentalmusic',
+      'minimalism_music',
       'indie',
       'electronicmusic',
       'glitch',
-      'metal',
       'trance',
       'jazz',
       'postrock',
-      'progmetal',
+      'drone',
+      'noisemusic',
+      'oceangrunge',
       'punk',
+      'ambient',
+      'funeraldoommetal',
       'psychedelicrock',
       'shoegaze',
       'rock',
-      'country',
       'classicrock',
       'alternativerock'
     ];
@@ -54,7 +56,7 @@ angular.module('smallblackdogApp')
     }
 
     var cleanTrackData = function(data) {
-      var qs;
+      var qs, title;
       var parser = document.createElement('a');
 
       parser.href = data.url;
@@ -67,7 +69,9 @@ angular.module('smallblackdogApp')
         data.youtubeId = qs.v;
       }
 
-      data.title = data.title.replace(/ *\([^)]*\) */g, "").replace(/ *\[[^)]*\] */g, "");
+      title = data.title.replace(/ *\([^)]*\) */g, "").replace(/ *\[[^)]*\] */g, "");
+      title = _.unescape(title);
+      data.title = title;
       return data;
     }
 
@@ -109,9 +113,11 @@ angular.module('smallblackdogApp')
       });
 
       var newPostCallback = function(post) {
+        var track;
         console.log('new post from reddit', post);
         if (isValidTrackPost(post)) {
-          $rootScope.$broadcast('event:new-track', post);
+          track = cleanTrackData(post)
+          $rootScope.$broadcast('event:new-track', track);
         }
       };
 

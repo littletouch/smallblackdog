@@ -12,6 +12,11 @@ angular.module('smallblackdogApp')
     $scope.initializing = true;
     $scope.progressPercentage = 0;
 
+    NProgress.configure({
+      showSpinner: false,
+      minimum: 0
+    });
+
     var playlist = [];
 
     var player = videojs('blackdog-player', {
@@ -29,6 +34,7 @@ angular.module('smallblackdogApp')
       player.on('timeupdate', function(event) {
         var percent = player.currentTime() / player.duration();
         $scope.progressPercentage = percent;
+        NProgress.set(percent);
       });
 
     });
