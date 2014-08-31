@@ -10,6 +10,7 @@
 angular.module('smallblackdogApp')
   .controller('MainCtrl', function ($scope, $timeout, redditMusicService) {
     $scope.initializing = true;
+    $scope.progressPercentage = 0;
 
     var playlist = [];
 
@@ -24,6 +25,12 @@ angular.module('smallblackdogApp')
         console.log('ended');
         toNextTrack();
       });
+
+      player.on('timeupdate', function(event) {
+        var percent = player.currentTime() / player.duration();
+        $scope.progressPercentage = percent;
+      });
+
     });
 
     redditMusicService.init();
@@ -44,6 +51,12 @@ angular.module('smallblackdogApp')
       redditMusicService.getCoverByTrackTitle(track.title).then(function(cover){
         $scope.cover = cover;
         console.log('cover in ctrl', cover);
+      }, function(reason) {
+        console.log(track.youtubeId);
+        $scope.cover = sprintf(
+          'http://i3.ytimg.com/vi/%s/0.jpg',
+          track.youtubeId
+        );
       });
 
     };

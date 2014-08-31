@@ -54,6 +54,19 @@ angular.module('smallblackdogApp')
     }
 
     var cleanTrackData = function(data) {
+      var qs;
+      var parser = document.createElement('a');
+
+      parser.href = data.url;
+      qs = queryString.parse(parser.search);
+      if (qs.v) {
+        data.youtubeId = qs.v;
+      } else if (qs.a) {
+        parser.href = qs['amp;u'];
+        qs = queryString.parse(parser.search);
+        data.youtubeId = qs.v;
+      }
+
       data.title = data.title.replace(/ *\([^)]*\) */g, "").replace(/ *\[[^)]*\] */g, "");
       return data;
     }
@@ -141,6 +154,7 @@ angular.module('smallblackdogApp')
               var url = data.tracks.items[0].album.images[0].url;
               defer.resolve(url);
             } catch(e) {
+              defer.reject('not found in spotify');
               console.log('no available cover');
             }
           }).
