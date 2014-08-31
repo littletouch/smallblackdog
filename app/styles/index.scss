@@ -1,0 +1,23 @@
+// bower:scss
+// endbower
+
+@import 'lib/mixin';
+@import 'lib/var';
+
+.track {
+	text-align: center;
+	padding: 40px 0;
+	border-top: 1px solid $border-color;
+}
+
+	.track-title {
+		  font-family: 'Architects Daughter', cursive;
+	}
+
+	.track-cover {
+		@include circular(200px);
+	}
+
+.bottom {
+	border-top: 0;
+}
