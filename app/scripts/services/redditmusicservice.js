@@ -36,7 +36,6 @@ angular.module('smallblackdogApp')
       'oceangrunge',
       'punk',
       'ambient',
-      'funeraldoommetal',
       'psychedelicrock',
       'shoegaze',
       'rock',
