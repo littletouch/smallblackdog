@@ -19,9 +19,9 @@ $prog_color: #666;
 }
 
 .track {
-	height: 100%;
-	text-align: center;
-	padding: 40px 0 30px;
+  height: 100%;
+  text-align: center;
+  padding: 40px 0 30px;
 }
 
 
@@ -29,41 +29,41 @@ $prog_color: #666;
   font-family: 'Istok Web', sans-serif;
   font-size: 1.5em;
   color: $track_title_color;
-	margin: 0 0 20px;
+  margin: 0 0 20px;
 }
 
 .track-cover {
-	@include circular($sm-radius);
-	@media screen and (min-width: 40em) {
-		@include circular($mid-radius);
-	}
+  @include circular($sm-radius);
+  @media screen and (min-width: 40em) {
+    @include circular($mid-radius);
+  }
 }
 
 /* Loading effect */
 .loader svg {
-	position: absolute;
-	top: 53px;
-	left: 50%;
-	display: block;
-	width: $sm-radius*2;
-	height: $sm-radius*2;
-	-webkit-transform: translateX(-50%);
-	transform: translateX(-50%);
-	pointer-events: none;
-	@media screen and (min-width: 40em) {
-		width: $mid-radius*2;
-		height: $mid-radius*2;
-	}
+  position: absolute;
+  top: 53px;
+  left: 50%;
+  display: block;
+  width: $sm-radius*2;
+  height: $sm-radius*2;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  pointer-events: none;
+  @media screen and (min-width: 40em) {
+    width: $mid-radius*2;
+    height: $mid-radius*2;
+  }
 }
 
 #loader-inner { 
-	fill: #fff; 
-	fill-opacity: 0.25;
+  fill: #fff; 
+  fill-opacity: 0.25;
 }
 
 #loader-outer { 
-	fill: #000; 
-	fill-opacity: 0.15;
+  fill: #000; 
+  fill-opacity: 0.15;
 }
 
 #nprogress .bar {

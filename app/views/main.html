@@ -9,16 +9,18 @@
       </div>
     </div>
 
-	<h2 class="track-title"> {{ track.title }} </h2>
-	<img ng-src="{{ cover }}" class="track-cover">
+  <div ng-hide="initializing">
+    <h2 class="track-title"> {{ track.title }} </h2>
+    <img ng-src="{{ cover }}" class="track-cover">
+  </div>
 
-    <video style="display:none" id="blackdog-player" src="" class="video-js vjs-default-skin" autoplay preload="auto" width="400" height="400" >
-    </video>    
+  <video style="display:none" id="blackdog-player" src="" class="video-js vjs-default-skin" autoplay preload="auto" width="400" height="400" >
+  </video>    
   </div>
 </div>
 
 <script>
-	var loader = document.getElementById('loader-inner')
+  var loader = document.getElementById('loader-inner')
         , border = document.getElementById('loader-outer')
         , α = 0
         , π = Math.PI
@@ -40,15 +42,8 @@
 
         loader.setAttribute( 'd', anim );
         border.setAttribute( 'd', anim );
-        if( α != 0 )
+        
         tdraw = setTimeout(PieDraw, t); // Redraw
-      }
-
-      function PieReset() {
-        clearTimeout(tdraw);
-        var anim = 'M 0 0 v -250 A 250 250 1 0 1 0 -250 z';
-        loader.setAttribute( 'd', anim );
-        border.setAttribute( 'd', anim );
       }
 
       PieDraw();
