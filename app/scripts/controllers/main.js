@@ -8,13 +8,33 @@
  * Controller of the smallblackdogApp
  */
 angular.module('smallblackdogApp')
-  .controller('MainCtrl', function ($scope, $timeout, redditMusicService) {
+  .controller('MainCtrl', function ($scope, $timeout, redditMusicService, hotkeys) {
     $scope.initializing = true;
     $scope.progressPercentage = 0;
+    $scope.playing = false;
 
     NProgress.configure({
       showSpinner: false,
       minimum: 0
+    });
+
+    // hotkey to play/pause the song
+    hotkeys.add({
+      combo: 'space',
+      description: 'Play/Pause',
+      callback: function(event) {
+        playOrPause();
+        event.preventDefault();
+      }
+    });
+
+    // hotkey to skip the song
+    hotkeys.add({
+      combo: 'right',
+      callback: function(event) {
+        toNextTrack();
+        event.preventDefault();
+      }
     });
 
     var playlist = [];
@@ -40,6 +60,19 @@ angular.module('smallblackdogApp')
     });
 
     redditMusicService.init();
+
+    var playOrPause = function() {
+      var isPlaying = !player.paused();
+      if(isPlaying) {
+        console.log("pause");
+        player.pause();
+        $scope.playing = false;
+      } else {
+        console.log("play");
+        player.play();
+        $scope.playing = true;
+      }
+    }
 
     var toNextTrack = function() {
       var track = playlist.shift();
@@ -83,6 +116,7 @@ angular.module('smallblackdogApp')
       playlistUpdateCallback();
       toNextTrack();
       $scope.initializing = false;
+      $scope.playing = true;
     });
 
   });

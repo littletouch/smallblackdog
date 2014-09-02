@@ -5,18 +5,14 @@
     "angular": "1.2.16",
     "json3": "~3.3.1",
     "es5-shim": "~3.1.0",
-    "angular-resource": "1.2.16",
-    "angular-cookies": "1.2.16",
-    "angular-sanitize": "1.2.16",
-    "angular-animate": "1.2.16",
-    "angular-touch": "1.2.16",
     "angular-route": "1.2.16",
     "lodash": "~2.4.1",
     "videojs-youtube": "~1.2.5",
     "sprintf": "~1.0.0",
     "foundation": "~5.4.3",
     "query-string": "~1.0.0",
-    "nprogress": "~0.1.6"
+    "nprogress": "~0.1.6",
+    "angular-hotkeys": "chieffancypants/angular-hotkeys#~1.4.3"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",

@@ -10,12 +10,8 @@
  */
 angular
   .module('smallblackdogApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
     'ngRoute',
-    'ngSanitize',
-    'ngTouch'
+    'cfp.hotkeys'
   ])
   .config(function ($routeProvider) {
     $routeProvider

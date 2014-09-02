@@ -9,13 +9,13 @@
       </div>
     </div>
 
-  <div ng-hide="initializing">
-    <h2 class="track-title"> {{ track.title }} </h2>
-    <img ng-src="{{ cover }}" class="track-cover">
-  </div>
+    <div ng-hide="initializing" ng-class="{true:'playing', false:'paused'}[playing]" >
+      <h2 class="track-title"> {{ track.title }} </h2>
+      <img ng-src="{{ cover }}" class="track-cover">
+    </div>
 
-  <video style="display:none" id="blackdog-player" src="" class="video-js vjs-default-skin" autoplay preload="auto" width="400" height="400" >
-  </video>    
+    <video style="display:none" id="blackdog-player" src="" class="video-js vjs-default-skin" autoplay preload="auto" width="400" height="400" >
+    </video>    
   </div>
 </div>
 
