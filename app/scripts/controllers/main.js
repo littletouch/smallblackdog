@@ -13,6 +13,33 @@ angular.module('smallblackdogApp')
     $scope.progressPercentage = 0;
     $scope.playing = false;
 
+    var loader = document.getElementById('loader-inner')
+      , border = document.getElementById('loader-outer')
+      , α = 0
+      , π = Math.PI
+      , t = 15
+      , tdraw;
+
+    function PieDraw() {
+      α++;
+      α %= 360;
+      var r = ( α * π / 180 )
+      , x = Math.sin( r ) * 250
+      , y = Math.cos( r ) * - 250
+      , mid = ( α > 180 ) ? 1 : 0
+      , anim = 'M 0 0 v -250 A 250 250 1 ' 
+             + mid + ' 1 ' 
+             +  x  + ' ' 
+             +  y  + ' z';
+
+      loader.setAttribute( 'd', anim );
+      border.setAttribute( 'd', anim );
+
+      tdraw = $timeout(PieDraw, t);
+    }
+
+    PieDraw();
+
     NProgress.configure({
       showSpinner: false,
       minimum: 0
@@ -117,6 +144,7 @@ angular.module('smallblackdogApp')
       toNextTrack();
       $scope.initializing = false;
       $scope.playing = true;
+      $timeout.cancel(tdraw);
     });
 
   });

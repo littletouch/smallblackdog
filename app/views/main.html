@@ -3,8 +3,8 @@
     <div ng-show="initializing" class="track-init">
       <div class="loader">
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="500" height="500" viewbox="0 0 500 500">
-          <path id="loader-outer" transform="translate(250, 250)"/>
-          <path id="loader-inner" transform="translate(250, 250) scale(0.9)"/>
+          <path id="loader-outer" transform="translate(250, 250)"></path>
+          <path id="loader-inner" transform="translate(250, 250) scale(0.9)"></path>
         </svg>
       </div>
     </div>
@@ -18,33 +18,3 @@
     </video>    
   </div>
 </div>
-
-<script>
-  var loader = document.getElementById('loader-inner')
-        , border = document.getElementById('loader-outer')
-        , α = 0
-        , π = Math.PI
-        , t = 15
-        
-        , tdraw;
-
-      function PieDraw() {
-        α++;
-        α %= 360;
-        var r = ( α * π / 180 )
-        , x = Math.sin( r ) * 250
-        , y = Math.cos( r ) * - 250
-        , mid = ( α > 180 ) ? 1 : 0
-        , anim = 'M 0 0 v -250 A 250 250 1 ' 
-               + mid + ' 1 ' 
-               +  x  + ' ' 
-               +  y  + ' z';
-
-        loader.setAttribute( 'd', anim );
-        border.setAttribute( 'd', anim );
-        
-        tdraw = setTimeout(PieDraw, t); // Redraw
-      }
-
-      PieDraw();
-</script>
