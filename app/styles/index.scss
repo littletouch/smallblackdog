@@ -1,13 +1,15 @@
 // bower:scss
 // endbower
 
-@import 'lib/mixin';
-@import 'lib/var';
+@import "lib/mixin";
+@import "lib/var";
+@import "compass/utilities/general/clearfix";
 
 .track {
-  height: 100%;
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 2.5%;
   text-align: center;
-  padding: 40px 0 30px;
 }
 
 .paused {
@@ -17,10 +19,16 @@
 }
 
 .track-title {
+  display: table;
+  width: 100%;
   font-family: 'Istok Web', sans-serif;
   font-size: 1.5em;
+  height: $track_title_height;
   color: $track_title_color;
-  margin: 0 0 20px;
+  h1 {
+    display: table-cell;
+    vertical-align: middle;
+  }
 }
 
 .track-cover {
@@ -31,21 +39,16 @@
 }
 
 /* Loading effect */
-.loader svg {
-  position: absolute;
-  top: 53px;
-  left: 50%;
-  display: block;
+.loader {
+  margin-top: $track_title_height;
+  display: inline-block;
   width: $sm-radius*2;
   height: $sm-radius*2;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-  pointer-events: none;
   @media screen and (min-width: 40em) {
     width: $mid-radius*2;
     height: $mid-radius*2;
   }
-}
+} 
 
 #loader-inner { 
   fill: #fff; 
