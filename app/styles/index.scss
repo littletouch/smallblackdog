@@ -1,22 +1,8 @@
 // bower:scss
 // endbower
 
-$track_title_color: #888;
-$prog_color: #666;
-
 @import 'lib/mixin';
 @import 'lib/var';
-
-
-::selection {
-  background: black;
-  color: yellow; 
-}
-
-::-moz-selection {
-  background: black;
-  color: yellow; 
-}
 
 .track {
   height: 100%;

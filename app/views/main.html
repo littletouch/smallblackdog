@@ -1,20 +1,18 @@
 <div class="row track">
-  <div class="small-12 columns">
-    <div ng-show="initializing" class="track-init">
-      <div class="loader">
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="500" height="500" viewbox="0 0 500 500">
-          <path id="loader-outer" transform="translate(250, 250)"></path>
-          <path id="loader-inner" transform="translate(250, 250) scale(0.9)"></path>
-        </svg>
-      </div>
+  <div ng-show="initializing" class="track-init">
+    <div class="loader">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="500" height="500" viewbox="0 0 500 500">
+        <path id="loader-outer" transform="translate(250, 250)"></path>
+        <path id="loader-inner" transform="translate(250, 250) scale(0.9)"></path>
+      </svg>
     </div>
-
-    <div ng-hide="initializing" ng-class="{true:'playing', false:'paused'}[playing]" >
-      <h2 class="track-title"> {{ track.title }} </h2>
-      <img ng-src="{{ cover }}" class="track-cover">
-    </div>
-
-    <video style="display:none" id="blackdog-player" src="" class="video-js vjs-default-skin" autoplay preload="auto" width="400" height="400" >
-    </video>    
   </div>
+
+  <div ng-hide="initializing" ng-class="{true:'playing', false:'paused'}[playing]" >
+    <h2 class="track-title"> {{ track.title }} </h2>
+    <img ng-src="{{ cover }}" class="track-cover">
+  </div>
+
+  <video style="display:none" id="blackdog-player" src="" class="video-js vjs-default-skin" autoplay preload="auto" width="400" height="400" >
+  </video>    
 </div>

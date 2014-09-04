@@ -9,7 +9,6 @@
     "lodash": "~2.4.1",
     "videojs-youtube": "~1.2.5",
     "sprintf": "~1.0.0",
-    "foundation": "~5.4.3",
     "query-string": "~1.0.0",
     "nprogress": "~0.1.6",
     "angular-hotkeys": "chieffancypants/angular-hotkeys#~1.4.3"
