@@ -12,7 +12,8 @@
     "foundation": "~5.4.3",
     "query-string": "~1.0.0",
     "nprogress": "~0.1.6",
-    "angular-hotkeys": "chieffancypants/angular-hotkeys#~1.4.3"
+    "angular-hotkeys": "chieffancypants/angular-hotkeys#~1.4.3",
+    "ngstorage": "~0.3.0"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",

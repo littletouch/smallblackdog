@@ -8,7 +8,8 @@
  * Controller of the smallblackdogApp
  */
 angular.module('smallblackdogApp')
-  .controller('MainCtrl', function ($scope, $timeout, redditMusicService, hotkeys) {
+  .controller('MainCtrl',
+       function ($scope, $timeout, trackUtilsService, redditMusicService, hotkeys) {
     $scope.initializing = true;
     $scope.progressPercentage = 0;
     $scope.playing = false;
@@ -59,6 +60,7 @@ angular.module('smallblackdogApp')
 
     });
 
+    trackUtilsService.init();
     redditMusicService.init();
 
     var playOrPause = function() {
@@ -76,11 +78,11 @@ angular.module('smallblackdogApp')
 
     var toNextTrack = function() {
       var track = playlist.shift();
-      console.log('next', track);
       player.src({
         src: track.url,
         type: 'video/youtube'
       });
+      trackUtilsService.saveTrackHistory(track);
 
       $scope.track = track;
       $timeout(function() {
@@ -97,7 +99,6 @@ angular.module('smallblackdogApp')
           track.youtubeId
         );
       });
-
     };
 
     var playlistUpdateCallback = function() {
@@ -113,6 +114,7 @@ angular.module('smallblackdogApp')
     $scope.$on('event:init-track-list', function(event, tracks) {
       console.log('init track list in ctrl', tracks);
       playlist = playlist.concat(tracks);
+      playlist = trackUtilsService.filterPlayedTrack(playlist);
       playlistUpdateCallback();
       toNextTrack();
       $scope.initializing = false;
