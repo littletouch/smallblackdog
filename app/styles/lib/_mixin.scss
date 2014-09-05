@@ -3,6 +3,7 @@
   height: $radius*2;
   border-radius: $radius;
 }
+
 @mixin clearfix() {
   &:before,
   &:after {
