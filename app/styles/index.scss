@@ -3,12 +3,11 @@
 
 @import "lib/mixin";
 @import "lib/var";
-@import "compass/utilities/general/clearfix";
 
 .track {
-  width: 90%;
+  min-width: $sm-radius * 2;
   margin: 0 auto;
-  padding: 2.5% 0 5%;
+  padding-top: 2.5%;
   text-align: center;
 }
 
