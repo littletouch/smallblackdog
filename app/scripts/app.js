@@ -11,6 +11,7 @@
 angular
   .module('smallblackdogApp', [
     'ngRoute',
+    'ngStorage',
     'cfp.hotkeys'
   ])
   .config(function ($routeProvider) {

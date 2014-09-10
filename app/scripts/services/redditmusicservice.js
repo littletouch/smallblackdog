@@ -64,11 +64,11 @@ angular.module('smallblackdogApp')
       parser.href = data.url;
       qs = queryString.parse(parser.search);
       if (qs.v) {
-        data.youtubeId = qs.v;
+        data.sourceId = qs.v;
       } else if (qs.a) {
         parser.href = qs['amp;u'];
         qs = queryString.parse(parser.search);
-        data.youtubeId = qs.v;
+        data.sourceId = qs.v;
       }
 
       title = data.title
@@ -77,6 +77,7 @@ angular.module('smallblackdogApp')
 
       title = _.unescape(title);
       data.title = title;
+      data.url = sprintf("https://www.youtube.com/watch?v=%s", data.sourceId);
       return data;
     }
 
