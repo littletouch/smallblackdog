@@ -14,6 +14,15 @@
       <img ng-src="{{ cover }}" class="track-cover">
     </div>
 
+    <div ng-show="playing" class="track-source">
+      <p>
+      source:
+        <a href="{{track.sourceUrl}}">
+          {{track.sourceUrl}}
+        </a>
+      </p>
+    </div>
+
     <video style="display:none" id="blackdog-player" src="" class="video-js vjs-default-skin" autoplay preload="auto" width="400" height="400" >
     </video>    
   </div>
