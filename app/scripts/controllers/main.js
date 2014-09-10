@@ -15,6 +15,8 @@ angular.module('smallblackdogApp')
     $scope.playing = false;
     $scope.beats = [];
 
+    var VOLUME_CHANGE_STEP = 0.1;
+
     NProgress.configure({
       showSpinner: false,
       minimum: 0
@@ -35,6 +37,24 @@ angular.module('smallblackdogApp')
       combo: 'right',
       callback: function(event) {
         toNextTrack();
+        event.preventDefault();
+      }
+    });
+
+    // hotkey to skip the song
+    hotkeys.add({
+      combo: 'up',
+      callback: function(event) {
+        volumeChange('up');
+        event.preventDefault();
+      }
+    });
+
+    // hotkey to skip the song
+    hotkeys.add({
+      combo: 'down',
+      callback: function(event) {
+        volumeChange('down');
         event.preventDefault();
       }
     });
@@ -114,6 +134,20 @@ angular.module('smallblackdogApp')
         );
       });
     };
+
+    var volumeChange = function(direction) {
+      var current = player.volume();
+      var change;
+
+      if (direction === "up") {
+        if (current>=1) return;
+        change = VOLUME_CHANGE_STEP;
+      } else {
+        if (current<=0) return;
+        change = -VOLUME_CHANGE_STEP;
+      }
+      player.volume(current + change);
+    }
 
     var playlistUpdateCallback = function() {
       playlist = _.shuffle(playlist);

@@ -106,3 +106,23 @@ body {
     left: 2.5%;
   }
 }
+
+.shortcuts {
+
+  span {
+    font-size: 0.3em;
+  }
+
+  span.key {
+    display: inline-block;
+    color: #fff;
+    background-color: #333;
+    border: 1px solid #333;
+    border-radius: 5px;
+    text-align: center;
+    margin-right: 5px;
+    box-shadow: inset 0 1px 0 #666,0 1px 0 #bbb;
+    padding: 5px 9px;
+  }
+
+}
