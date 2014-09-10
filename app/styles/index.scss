@@ -2,6 +2,9 @@
 // endbower
 
 $track_title_color: #888;
+$track_source_color: #aaa;
+$track_source_link_hover_color: #ccc;
+$track_source_size: 0.8em;
 $prog_color: #666;
 
 @import 'lib/mixin';
@@ -32,7 +35,7 @@ $prog_color: #666;
 
 .track-title {
   font-family: 'Istok Web', sans-serif;
-  font-size: 1.5em;
+  font-size: 1.2em;
   color: $track_title_color;
   margin: 0 0 20px;
 }
@@ -41,6 +44,24 @@ $prog_color: #666;
   @include circular($sm-radius);
   @media screen and (min-width: 40em) {
     @include circular($mid-radius);
+  }
+}
+
+.track-source {
+  color: $track_source_color;
+  margin-top: 20px;
+
+  p {
+    font-size: $track_source_size;
+
+    a {
+      color: $track_source_color;
+
+      &:hover {
+       color: $track_source_link_hover_color; 
+       text-decoration: underline;
+      }
+    }
   }
 }
 

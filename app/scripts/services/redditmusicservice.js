@@ -77,7 +77,10 @@ angular.module('smallblackdogApp')
 
       title = _.unescape(title);
       data.title = title;
-      data.url = sprintf("https://www.youtube.com/watch?v=%s", data.sourceId);
+      data.sourceUrl = sprintf(
+        "https://www.youtube.com/watch?v=%s",
+        data.sourceId
+      );
       return data;
     }
 
@@ -163,8 +166,13 @@ angular.module('smallblackdogApp')
           success(function(data, status, headers, config) {
             console.log(data);
             try {
-              var url = data.tracks.items[0].album.images[0].url;
-              defer.resolve(url);
+              var item = data.tracks.items[0];
+              var cover = item.album.images[0].url;
+              var uri = item.uri;
+              defer.resolve({
+               'cover': cover,
+               'uri': uri
+              });
             } catch(e) {
               defer.reject('not found in spotify');
               console.log('no available cover');

@@ -9,10 +9,11 @@
  */
 angular.module('smallblackdogApp')
   .controller('MainCtrl',
-       function ($scope, $timeout, trackUtilsService, redditMusicService, hotkeys) {
+       function ($scope, $timeout, trackUtilsService, redditMusicService, echonestService, hotkeys) {
     $scope.initializing = true;
     $scope.progressPercentage = 0;
     $scope.playing = false;
+    $scope.beats = [];
 
     NProgress.configure({
       showSpinner: false,
@@ -53,15 +54,21 @@ angular.module('smallblackdogApp')
       });
 
       player.on('timeupdate', function(event) {
-        var percent = player.currentTime() / player.duration();
+        var currentTime = player.currentTime();
+        var percent = currentTime / player.duration();
         $scope.progressPercentage = percent;
         NProgress.set(percent);
+        // beatEventCallback(currentTime);
       });
 
     });
 
     trackUtilsService.init();
     redditMusicService.init();
+
+    // var beatEventCallback = function(currentTime) {
+    //   console.log();
+    // }
 
     var playOrPause = function() {
       var isPlaying = !player.paused();
@@ -79,7 +86,7 @@ angular.module('smallblackdogApp')
     var toNextTrack = function() {
       var track = playlist.shift();
       player.src({
-        src: track.url,
+        src: track.sourceUrl,
         type: 'video/youtube'
       });
       trackUtilsService.saveTrackHistory(track);
@@ -89,9 +96,16 @@ angular.module('smallblackdogApp')
         $scope.$apply();
       });
 
-      redditMusicService.getCoverByTrackTitle(track.title).then(function(cover){
-        $scope.cover = cover;
-        console.log('cover in ctrl', cover);
+      redditMusicService.getCoverByTrackTitle(track.title).then(function(data){
+        $scope.cover = data.cover;
+
+        // echonestService
+        //   .getAudioDataByTrackId(data.uri)
+        //   .then(function(audioData){
+        //     var summary = audioData.summary;
+        //     $scope.beats = summary.beats;
+        //   });
+
       }, function(reason) {
         console.log(track.sourceId);
         $scope.cover = sprintf(
