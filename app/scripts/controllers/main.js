@@ -93,10 +93,10 @@ angular.module('smallblackdogApp')
         $scope.cover = cover;
         console.log('cover in ctrl', cover);
       }, function(reason) {
-        console.log(track.youtubeId);
+        console.log(track.sourceId);
         $scope.cover = sprintf(
           'http://i3.ytimg.com/vi/%s/0.jpg',
-          track.youtubeId
+          track.sourceId
         );
       });
     };

@@ -10,8 +10,8 @@
 angular.module('smallblackdogApp')
   .service('trackUtilsService', function trackUtilsService($rootScope, $localStorage) {
 
-  var getTrackMark = function(track) {
-    return sprintf("%s:%s", track.domain, track.id);
+  var getTrackUid = function(track) {
+    return sprintf("%s:%s", track.domain, track.sourceId);
   };
 
   this.init = function() {
@@ -21,13 +21,13 @@ angular.module('smallblackdogApp')
 
   this.filterPlayedTrack = function(tracks) {
     return _.filter(tracks, function(track) {
-      return !$localStorage.trackHistoryList[getTrackMark(track)];
+      return !$localStorage.trackHistoryList[getTrackUid(track)];
     });
   };
 
   this.saveTrackHistory = function(track) {
-    var mark = getTrackMark(track);
-    console.log(sprintf('save track %s history', mark));
-    $localStorage.trackHistoryList[mark] = Date.parse(new Date())/1000;
+    var uid = getTrackUid(track);
+    console.log(sprintf('save track %s history', uid));
+    $localStorage.trackHistoryList[uid] = Date.parse(new Date())/1000;
   };
 });
