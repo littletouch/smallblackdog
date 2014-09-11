@@ -153,6 +153,12 @@ angular.module('smallblackdogApp')
       playlist = _.shuffle(playlist);
     };
 
+    var initFinishedCallback = function() {
+      $('.spinner').remove();
+      $scope.initializing = false;
+      $scope.playing = true;
+    }
+
     $scope.$on('event:new-track', function(event, track) {
       console.log('new track in ctrl', track);
       playlist.push(track);
@@ -165,8 +171,7 @@ angular.module('smallblackdogApp')
       playlist = trackUtilsService.filterPlayedTrack(playlist);
       playlistUpdateCallback();
       toNextTrack();
-      $scope.initializing = false;
-      $scope.playing = true;
+      initFinishedCallback();
     });
 
   });

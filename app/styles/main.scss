@@ -77,13 +77,17 @@
   }
 
   .track-title {
-    font-family: 'Istok Web', sans-serif;
-    font-size: 1.2rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem;
     margin: 2rem 0 1.5rem;
   }
 
   .track-cover {
     border: 0;
+
+    img {
+      height: 300px;
+    }
   }
 
   .track-source {
@@ -92,6 +96,7 @@
     text-align: center;
 
     p {
+      font-family: 'Rajdhani';
       font-size: 0.8rem;
     }
   }
@@ -107,6 +112,11 @@
 // shortcuts
 .shortcuts {
   padding-top: 25%;
+
+  h6 {
+    font-family: 'Rajdhani';
+  }
+
   .key {
     font-size: 0.65rem;
   }
