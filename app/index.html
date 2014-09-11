@@ -24,21 +24,18 @@
     <link rel="stylesheet" href="styles/index.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="smallblackdogApp" class="wrap">
+  <body ng-app="smallblackdogApp">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container wrap">
+    <section ng-view="" class="wrap">
+    </section>
 
-      <div ng-view="" class="track-wrapper">
-      </div>
-
-      <div class="footer fixed_footer">
-        <p>&copy; 2014 小黑犬 FM</p>
-      </div>
-    </div>
+    <footer>
+      <p>&copy; 2014 小黑犬 FM</p>
+    </footer>
 
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

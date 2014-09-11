@@ -14,7 +14,7 @@ angular
     'ngStorage',
     'cfp.hotkeys'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, hotkeysProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -27,4 +27,6 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+
+      hotkeysProvider.includeCheatSheet = false;
   });
