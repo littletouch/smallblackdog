@@ -1,103 +1,13 @@
 // bower:scss
 // endbower
 
-$track_title_color: #888;
-$track_source_color: #aaa;
-$track_source_link_hover_color: #ccc;
-$track_source_size: 0.8em;
-$prog_color: #666;
-
-@import 'lib/mixin';
-@import 'lib/var';
-
-
-::selection {
-  background: black;
-  color: yellow; 
+.wrap {
+  padding: 5% 0;
 }
 
-::-moz-selection {
-  background: black;
-  color: yellow; 
-}
-
-.track {
-  height: 100%;
-  text-align: center;
-  padding: 40px 0 30px;
-}
-
-.paused {
-  .track-cover {
-    opacity: 0.5;
-  }
-}
-
-.track-title {
-  font-family: 'Istok Web', sans-serif;
-  font-size: 1.2em;
-  color: $track_title_color;
-  margin: 0 0 20px;
-}
-
-.track-cover {
-  @include circular($sm-radius);
-  @media screen and (min-width: 40em) {
-    @include circular($mid-radius);
-  }
-}
-
-.track-source {
-  color: $track_source_color;
-  margin-top: 20px;
-
-  p {
-    font-size: $track_source_size;
-
-    a {
-      color: $track_source_color;
-
-      &:hover {
-       color: $track_source_link_hover_color; 
-       text-decoration: underline;
-      }
-    }
-  }
-}
-
-/* Loading effect */
-.loader svg {
-  position: absolute;
-  top: 53px;
-  left: 50%;
-  display: block;
-  width: $sm-radius*2;
-  height: $sm-radius*2;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-  pointer-events: none;
-  @media screen and (min-width: 40em) {
-    width: $mid-radius*2;
-    height: $mid-radius*2;
-  }
-}
-
-#loader-inner { 
-  fill: #fff; 
-  fill-opacity: 0.25;
-}
-
-#loader-outer { 
-  fill: #000; 
-  fill-opacity: 0.15;
-}
-
-#nprogress {
-  .bar {
-    height: 4px !important;
-    background: $prog_color !important;
-  }
-  .peg {
-    box-shadow: 0 0 10px $prog_color, 0 0 5px $prog_color !important;
-  }
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-left: 3%;
 }

@@ -1,78 +1,76 @@
-<div class="row track">
-  <div class="small-12 columns">
-    <div ng-show="initializing" class="track-init">
-      <div class="loader">
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="500" height="500" viewbox="0 0 500 500">
-          <path id="loader-outer" transform="translate(250, 250)"/>
-          <path id="loader-inner" transform="translate(250, 250) scale(0.9)"/>
-        </svg>
-      </div>
-    </div>
+<section class="row">
+
+  <main class="small-6 small-offset-3 columns track">
 
     <div ng-hide="initializing" ng-class="{true:'playing', false:'paused'}[playing]" >
-      <h2 class="track-title"> {{ track.title }} </h2>
+      <h1 class="track-title subheader text-center"> {{ track.title }} </h1>
       <img ng-src="{{ cover }}" class="track-cover">
     </div>
 
     <div ng-show="playing" class="track-source">
       <p>
       source:
-        <a href="{{track.sourceUrl}}">
+        <a href="{{track.sourceUrl}}" class="source-url">
           {{track.sourceUrl}}
         </a>
+
       </p>
     </div>
 
-    <video style="display:none" id="blackdog-player" src="" class="video-js vjs-default-skin" autoplay preload="auto" width="400" height="400" >
+    <video class="hide" id="blackdog-player" src="" class="video-js vjs-default-skin" autoplay preload="auto" width="0" height="0" >
     </video>
 
-    <div class="shortcuts">
+  </main>
 
-      <ul>
+  <aside class="small-3 columns shortcuts show-for-medium-up">
+
+    <div ng-hide="initializing">
+
+      <ul class="shortcuts-key no-bullet">
         <li>
-          <span class="key">space</span> <span>Play or Pause</span>
+          <p class="key"><kbd>space</kbd>Play or Pause</p>
         </li>
         <li>
-          <span class="key">right</span> <span>Skip</span>
+          <p class="key"><kbd>right</kbd>Skip</p>
         </li>
         <li>
-          <span class="key">up</span> <span>Turn up the volume</span>
+          <p class="key"><kbd>Up</kbd>Turn up the volume</p>
         </li>
         <li>
-          <span class="key">down</span> <span>Turn down the volume</span>
+          <p class="key"><kbd>Down</kbd>Turn down the volume</p>
         </li>
       </ul>
 
     </div>
-  </div>
-</div>
+  </aside>
+</section>
 
 <script>
-  var loader = document.getElementById('loader-inner')
-        , border = document.getElementById('loader-outer')
-        , α = 0
-        , π = Math.PI
-        , t = 15
+//   var loader = document.getElementById('loader-inner')
+//         , border = document.getElementById('loader-outer')
+//         , α = 0
+//         , π = Math.PI
+//         , t = 15
         
-        , tdraw;
+//         , tdraw;
 
-      function PieDraw() {
-        α++;
-        α %= 360;
-        var r = ( α * π / 180 )
-        , x = Math.sin( r ) * 250
-        , y = Math.cos( r ) * - 250
-        , mid = ( α > 180 ) ? 1 : 0
-        , anim = 'M 0 0 v -250 A 250 250 1 ' 
-               + mid + ' 1 ' 
-               +  x  + ' ' 
-               +  y  + ' z';
+//       function PieDraw() {
+//         α++;
+//         α %= 360;
+//         var r = ( α * π / 180 )
+//         , x = Math.sin( r ) * 150
+//         , y = Math.cos( r ) * - 150
+//         , mid = ( α > 180 ) ? 1 : 0
+//         , anim = 'M 0 0 v -150 A 150 150 1 ' 
+//                + mid + ' 1 ' 
+//                +  x  + ' ' 
+//                +  y  + ' z';
 
-        loader.setAttribute( 'd', anim );
-        border.setAttribute( 'd', anim );
+//         loader.setAttribute( 'd', anim );
+//         border.setAttribute( 'd', anim );
         
-        tdraw = setTimeout(PieDraw, t); // Redraw
-      }
+//         tdraw = setTimeout(PieDraw, t); // Redraw
+//       }
 
-      PieDraw();
+//       PieDraw();
 </script>

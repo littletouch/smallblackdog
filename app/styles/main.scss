@@ -1,128 +1,97 @@
 // bower:scss
 // endbower
 
-@import 'lib/mixin';
+@import 'lib/var';
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
-
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
-/* Apply a natural box layout model to all elements, but allowing components to change */
-html {
-  box-sizing: border-box;
-}
-
-/* Space out content a bit */
-body {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-
-  /* Make the masthead heading the same height as the navigation */
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
+// progress bar
+#nprogress {
+  .bar {
+    height: 4px !important;
+    background: $prog_color !important;
+  }
+  .peg {
+    box-shadow: 0 0 10px $prog_color, 0 0 5px $prog_color !important;
   }
 }
 
-/* Custom page footer */
-.footer {
-  p {
-    font-size: 12px;
-  }
-  padding-top: 10px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
-}
-
-.container-narrow > hr {
-  margin: 30px 0;
-}
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
+// track
+.track {
+  .paused {
+    .track-cover {
+      opacity: 0.5;
+    }
   }
 }
 
-.wrap {
-  margin: 0 auto;
-  padding-top: 0;
-}
-
-.container.wrap {
-  height: 468px;
-}
-
-.track-wrapper {
-  height: 423px;
-}
-
-.fixed_footer {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  @media screen and (min-width: 40em) {
-    width: 95%;
-    left: 2.5%;
-  }
-}
-
-.shortcuts {
-
-  span {
-    font-size: 0.3em;
+  .track-title {
+    font-family: 'Istok Web', sans-serif;
+    font-size: 1.2rem;
+    margin: 0 0 20px;
   }
 
-  span.key {
-    display: inline-block;
-    color: #fff;
-    background-color: #333;
-    border: 1px solid #333;
-    border-radius: 5px;
+  .track-cover {
+  }
+
+  .track-source {
+    color: $track_source_color;
+    margin-top: 20px;
     text-align: center;
-    margin-right: 5px;
-    box-shadow: inset 0 1px 0 #666,0 1px 0 #bbb;
-    padding: 5px 9px;
-  }
 
+    p {
+      font-size: 0.8rem;
+    }
+  }
+    .source-url {
+      color: inherit;
+
+      &:hover {
+       color: $track_source_link_hover_color; 
+       text-decoration: underline;
+      }
+    }
+
+// shortcuts
+.shortcuts {
+  padding-top: 25%;
+  .key {
+    font-size: 0.65rem;
+  }
+    kbd {
+      display: inline-block;
+      width: 4rem;
+      text-align: center;
+      margin-right: 5px;
+    }
 }
+
+.shortcuts-key {
+  text-align: left;
+}
+
+
+// /* Loading effect */
+// .loader svg {
+//   position: absolute;
+//   top: 53px;
+//   left: 50%;
+//   display: block;
+//   width: $sm-radius*2;
+//   height: $sm-radius*2;
+//   -webkit-transform: translateX(-50%);
+//   transform: translateX(-50%);
+//   pointer-events: none;
+//   @media screen and (min-width: 40em) {
+//     width: $mid-radius*2;
+//     height: $mid-radius*2;
+//   }
+// }
+
+// #loader-inner { 
+//   fill: #fff; 
+//   fill-opacity: 0.25;
+// }
+
+// #loader-outer { 
+//   fill: #000; 
+//   fill-opacity: 0.15;
+// }
