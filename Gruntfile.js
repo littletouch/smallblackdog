@@ -342,7 +342,7 @@ module.exports = function (grunt) {
       prod: {
         options: {
             // the dir you want to sync, in this case the current dir
-            src: './',
+            src: './dist',
             // where should it be synced to on the remote host?
             dest: '/home/wwwroot/fm.littletouch.org/',
             // what's the creds and host

@@ -179,7 +179,7 @@ angular.module('smallblackdogApp')
             }
           }).
           error(function(data, status, headers, config) {
-            console.log('oops, spotify search api calling failed');
+            defer.reject('oops, spotify search api calling failed');
           });
       return defer.promise;
     };
