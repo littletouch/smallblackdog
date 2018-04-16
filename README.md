@@ -3,6 +3,7 @@
 
 ## Setup
 
+* Need ruby and compass, `gem install compass`
 * Install node.js and npm
 * `npm install`
 * `bower install` (`npm install -g bower` if you havn't installed `bower`)
