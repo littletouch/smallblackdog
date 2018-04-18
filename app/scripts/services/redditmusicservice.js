@@ -47,7 +47,7 @@ angular.module('smallblackdogApp')
 
     var subredditNewPostListUrl = function(subreddit) {
       // more on reddit api http://www.reddit.com/dev/api
-      return sprintf('http://www.reddit.com/r/%s/new.json?limit=100', subreddit);
+      return sprintf('https://www.reddit.com/r/%s/new.json?limit=100', subreddit);
     };
 
     var isValidTrackPost = function(post) {
